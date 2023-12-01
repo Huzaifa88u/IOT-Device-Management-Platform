@@ -1,0 +1,27 @@
+/* DeviceComponent.css */
+
+
+  .login-header{
+    display: flex;
+    justify-content: center;
+  }
+  .card-container {
+    margin:50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: burlywood;
+    width: 200px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
