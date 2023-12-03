@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import './RegistrationComponent.css';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 const Registration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [role, setRole] = useState('');
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     if (!name || !email || !password) {
@@ -26,7 +28,10 @@ const Registration = () => {
     }
 
     try {
-      const response = await axios.post('/api/user/register', { name, email, password });
+      const response = await axios.post('/api/user/register', { name, email, password, role });
+      localStorage.setItem("user",response.data)
+      navigate('/profile');
+      
       console.log(response)
     } catch (error) {
       console.error('Registration failed', error);
@@ -35,14 +40,15 @@ const Registration = () => {
 
   return (
     <div className="registration-container">
-      <h4 className='app-name'>IOT_Device_Management_platform</h4>
+      <h4 className='appname'>IOT Device Management platform</h4>
       <h2 className='signup-header'>Sign Up</h2>
       <form className="registration-form">
         <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         <input type="text" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input type="Role" placeholder="Role" value={role} onChange={(e) => setRole(e.target.value)} />
         <div className='button-style'>
-          <button onClick={handleRegister}>Register</button>
+          <button type="button" onClick={handleRegister}>Register</button>
         </div>
         {error && <p className="error-message">{error}</p>}
         <div className='switch-login'>

@@ -6,6 +6,8 @@ import Registration from '../src/components/RegistrationComponent';
 // import ProtectedRoute from './components/ProtectedRoute';
 import ProfileComponent from './components/Profile';
 import DeviceComponent from './components/DeviceComponent';
+import AddDevice from './components/AddDevice';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   return (
@@ -14,9 +16,11 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Registration />} />
-        <Route path="/profile" element={<ProfileComponent role="lev_engineer" info="this is owner" />}>
-        </Route>
-        <Route path="/profile/devices" element={<DeviceComponent role="lev_engineer" />} />
+        {/* <Route element={<ProtectedRoute/>}> */}
+          <Route path="/profile" element={<ProfileComponent role="lev_engineer" info="this is owner" />}/>
+          <Route path="/profile/devices" element={<DeviceComponent role="lev_engineer" />} />
+          <Route path="/profile/devices/new" element={<AddDevice />} />
+        {/* </Route> */}
       </Routes>
     </Router>
   );
