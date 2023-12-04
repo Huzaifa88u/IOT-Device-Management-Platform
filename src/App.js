@@ -20,6 +20,7 @@ const App = () => {
           <Route path="/profile" element={<ProfileComponent role="lev_engineer" info="this is owner" />}/>
           <Route path="/profile/devices" element={<DeviceComponent role="lev_engineer" />} />
           <Route path="/profile/devices/new" element={<AddDevice />} />
+          <Route path="/profile/devices/edit/:deviceId" element={<AddDevice />} />
         {/* </Route> */}
       </Routes>
     </Router>

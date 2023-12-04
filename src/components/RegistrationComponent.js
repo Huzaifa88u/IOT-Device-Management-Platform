@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './RegistrationComponent.css';
 import axios from 'axios';
 import { Link, useNavigate} from 'react-router-dom';
+import API_URLs from '../common';
 
 const Registration = () => {
   const [name, setName] = useState('');
@@ -28,7 +29,7 @@ const Registration = () => {
     }
 
     try {
-      const response = await axios.post('/api/user/register', { name, email, password, role });
+      const response = await axios.post(`${API_URLs.SERVER_URL}/api/user/register`, { name, email, password, role });
       localStorage.setItem("user",response.data)
       navigate('/profile');
       

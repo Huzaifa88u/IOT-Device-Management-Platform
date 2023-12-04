@@ -3,6 +3,7 @@ import './ProfileComponent.css';
 // import DeviceComponent from './DeviceComponent';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import API_URLs from '../common';
 
 const Profile = () => {
   const [name, setName] = useState('');
@@ -32,7 +33,7 @@ const Profile = () => {
 
    useEffect ( ()=>{
     const fetchData = async ()=>{
-    // const response = await axios.get('api/user/me',accessToken)
+    // const response = await axios.get(`${API_URLs.SERVER_URL}/api/user/me`,accessToken)
       console.log("123")
     }
     fetchData();

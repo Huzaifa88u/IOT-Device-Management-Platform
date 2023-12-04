@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './DeviceComponent.css'; 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import API_URLs from '../common';
 
 const AddDevice = ({ isEdit, isUpdate, id, name: initialName, description: initialDescription }) => {
   const [deviceName, setDeviceName] = useState('');
@@ -9,6 +10,7 @@ const AddDevice = ({ isEdit, isUpdate, id, name: initialName, description: initi
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(isEdit,isUpdate,initialName)
     if (isEdit) {
       setDeviceName(initialName);
       setDeviceDescription(initialDescription);
@@ -17,7 +19,7 @@ const AddDevice = ({ isEdit, isUpdate, id, name: initialName, description: initi
 
   const handleAddDevice = async () => {
     try {
-      const response = await axios.post('/api/device/new', { name: deviceName, description: deviceDescription });
+      const response = await axios.post(`${API_URLs.SERVER_URL}/api/device/new`, { name: deviceName, description: deviceDescription });
       console.log(response);
       navigate('/profile/devices');
     } catch (error) {
@@ -27,7 +29,7 @@ const AddDevice = ({ isEdit, isUpdate, id, name: initialName, description: initi
 
   const handleEditDevice = async () => {
     try {
-      const response = await axios.patch(`/api/device/${id}`, { id, name: deviceName, description: deviceDescription });
+      const response = await axios.patch(`${API_URLs.SERVER_URL}/api/device/${id}`, { id, name: deviceName, description: deviceDescription });
       console.log(response);
       navigate('/profile/devices');
     } catch (error){
@@ -37,7 +39,7 @@ const AddDevice = ({ isEdit, isUpdate, id, name: initialName, description: initi
 
   const handleUpdateDevice = async () => {
     try {
-      const response = await axios.put(`/api/device/${id}`, { id, name: deviceName, description: deviceDescription });
+      const response = await axios.put(`${API_URLs.SERVER_URL}/api/device/${id}`, { id, name: deviceName, description: deviceDescription });
       console.log(response);
       navigate('/profile/devices');
     } catch (error){
